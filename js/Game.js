@@ -2,19 +2,25 @@ var objects = {};
 
 var Game = {
 	start : function() {
+		// Get the canvas element from the body
 		Game.canvas = document.getElementById('canvas');
+		// Make the canvas fill up the whole screen
 		canvas.width = window.innerWidth;
 		canvas.height = window.innerHeight;
+
 		Game.ctx = canvas.getContext('2d');
 
+		// Create the player object
 		objects.player = new Player("images/player.png", 100, 100);
-		objects.enemy0 = new Enemy("images/enemy.png", -32, -32);
 
+		// Set the timer for creating enemies
 		setInterval(function () {
-			objects["enemy"+Game.enemies] = new Enemy("images/enemy.png", -32, -32);
+			objects["enemy"+Game.enemies] = new Enemy("images/enemy.png", Math.floor(Math.random()*Game.canvas.width), Game.canvas.height);
+			objects["enemy"+Game.enemies].speed = (Game.enemies/10)+1;
 			Game.enemies++;
-		}, 10000);
+		}, 10000); // Milliseconds until next enemy is created
 
+		// Check when a key is pressed
 		window.onkeydown = Game.keyDown;
 		window.onkeyup = Game.keyUp;
 
@@ -42,5 +48,5 @@ var Game = {
 
 		window.requestAnimationFrame(Game.draw);
 	},
-	enemies : 1
+	enemies : 0
 }

@@ -34,13 +34,5 @@ class Player extends Sprite {
 		if (this.y > Game.canvas.height-30) {
 			this.y = Game.canvas.height-30;
 		}
-
-		// Check collision with enemy
-		for (var i = 0; i < Game.enemies; i++) {
-			if (this.distance(objects["enemy"+i]) < 32) {
-				location.reload();
-				alert("Game over :(");
-			}
-		}
 	}
 }

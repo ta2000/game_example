@@ -11,5 +11,11 @@ class Enemy extends Sprite {
 		this.angle = Math.atan2(objects.player.y - this.y, objects.player.x - this.x);
 		this.x += Math.cos(this.angle)*this.speed;
 		this.y += Math.sin(this.angle)*this.speed;
+
+		// Check if collision with player
+		if (this.distance(objects.player) < 32) {
+			location.reload();
+			alert("Game over :(");
+		}
 	}
 }
